@@ -1,0 +1,6 @@
+SELECT C.CustomerID, C.CustomerName, SUM(P.Price * OD.Quantity) AS TotalPrice
+FROM Customers AS C
+JOIN Orders AS O ON C.CustomerID = O.CustomerID
+JOIN OrderDetails AS OD ON O.OrderID = OD.OrderID
+JOIN Products AS P ON OD.ProductID = P.ProductID
+GROUP BY C.CustomerID, C.CustomerName;

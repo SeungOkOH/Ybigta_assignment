@@ -1,0 +1,9 @@
+SELECT CA.CategoryName,
+       SUM(OD.Quantity) AS TotalQuantity,
+       SUM(OD.Quantity * P.Price) AS TotalSellPrice
+FROM Categories AS CA
+JOIN Products AS P ON CA.CategoryID = P.CategoryID
+JOIN OrderDetails AS OD ON P.ProductID = OD.ProductID
+GROUP BY CA.CategoryName
+HAVING TotalSellPrice >= 2000
+ORDER BY TotalSellPrice DESC;
